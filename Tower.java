@@ -1,9 +1,10 @@
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Tower 
 {
-    private List<Flyable> observers;//To initialize ?
+    private List<Flyable> observers = new ArrayList<Flyable>();
 
     public void register(Flyable flyable)
     {
@@ -17,9 +18,9 @@ public class Tower
 
     protected void conditionChanged()
     {
-        for(Flyable airThing : observers)
+        for(int i = 0; i < observers.size(); i++)
         {
-            airThing.updateConditions();
+            observers.get(i).updateConditions();
         }
     }
 }
