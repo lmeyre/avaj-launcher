@@ -1,11 +1,29 @@
+package com;
+
+import com.Aircraft.Flyable;
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 
 public class Simulator
 {
+    public static PrintWriter txtStore;
     static int simulationTime;
+
     public static void main(String[] args)
-    {
+    {   
+
+        File simulationFile = new File("simulation.txt");
+        try
+        {
+            txtStore = new PrintWriter(simulationFile);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error: " + e.getMessage());
+            return;
+        }
+        if (simulationFile.exists())
+            txtStore.print("");
         WeatherTower weatherTower = new WeatherTower();
         createReader(args, weatherTower);
         while (simulationTime > 0)
@@ -13,6 +31,7 @@ public class Simulator
             weatherTower.changeWeather();
             simulationTime--;
         }
+        txtStore.close();
     }
 
     private static void createReader(String[] args, WeatherTower weatherTower)
@@ -34,6 +53,7 @@ public class Simulator
         catch(Exception e)
         {
             System.out.println("Couldn't read file : " + e.getMessage());
+            System.exit(0);
         }
         createAircrafts(reader, weatherTower);
     }
@@ -56,6 +76,11 @@ public class Simulator
                 }
 				Flyable aircraft = factory.newAircraft(datas[0], datas[1], Integer.parseInt(datas[2]),
                     Integer.parseInt(datas[3]), Integer.parseInt(datas[4]));
+                if (aircraft == null)
+                {
+                    System.out.println("Wrong aircraft type");
+                    System.exit(0);
+                }
                 aircraft.registerTower(weatherTower);
                 line++;
 			}

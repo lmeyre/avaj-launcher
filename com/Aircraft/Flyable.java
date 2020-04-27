@@ -1,3 +1,7 @@
+package com.Aircraft;
+
+import com.WeatherTower;
+
 public interface Flyable
 {
     public void updateConditions();

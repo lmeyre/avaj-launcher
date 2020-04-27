@@ -1,3 +1,7 @@
+package com;
+
+import com.Aircraft.*;
+
 public class AircraftFactory
 {
     public Flyable newAircraft(String type, String name, int longitude, int latitude, int height)
@@ -12,7 +16,6 @@ public class AircraftFactory
             case "Helicopter":
                 return new Helicopter(name, coord);
             default:
-                //Error;
                 return null;
         }
     }

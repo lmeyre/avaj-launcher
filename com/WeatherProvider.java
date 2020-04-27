@@ -1,3 +1,5 @@
+package com;
+
 public class WeatherProvider
 {
     private static WeatherProvider weatherProvider;

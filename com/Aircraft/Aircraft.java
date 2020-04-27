@@ -1,3 +1,7 @@
+package com.Aircraft;
+
+import com.Coordinates;
+
 public class Aircraft
 {
     protected long id;
