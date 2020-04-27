@@ -17,6 +17,9 @@ public class Tower
 
     protected void conditionChanged()
     {
-        
+        for(Flyable airThing : observers)
+        {
+            airThing.updateConditions();
+        }
     }
 }
